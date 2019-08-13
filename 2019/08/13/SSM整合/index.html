@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | Mr.J</title>
+  <title>Mr.J</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="实现spring+springmvc+mybatis的整合1.这是我搭建的完整目录结构 2.具体代码2.1整合所需要引入的依赖有 &amp;lt;dependency&amp;gt;   &amp;lt;groupId&amp;gt;junit&amp;lt;/groupId&amp;gt;   &amp;lt;artifactId&amp;gt;junit&amp;lt;/artifactId&amp;gt;   &amp;lt;version&amp;gt;4.11&amp;lt;/versio">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Mr.J">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/08/13/SSM整合/index.html">
 <meta property="og:site_name" content="Mr.J">
+<meta property="og:description" content="实现spring+springmvc+mybatis的整合1.这是我搭建的完整目录结构 2.具体代码2.1整合所需要引入的依赖有 &amp;lt;dependency&amp;gt;   &amp;lt;groupId&amp;gt;junit&amp;lt;/groupId&amp;gt;   &amp;lt;artifactId&amp;gt;junit&amp;lt;/artifactId&amp;gt;   &amp;lt;version&amp;gt;4.11&amp;lt;/versio">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/08/13/images/SSM%E6%95%B4%E5%90%88%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/13/SSM整合/..%5Cimages%5CSQLCode.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/13/SSM整合/..%5Cimages%5CservciceCode.png">
+<meta property="og:updated_time" content="2019-08-13T06:16:44.620Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mr.J">
+<meta name="twitter:description" content="实现spring+springmvc+mybatis的整合1.这是我搭建的完整目录结构 2.具体代码2.1整合所需要引入的依赖有 &amp;lt;dependency&amp;gt;   &amp;lt;groupId&amp;gt;junit&amp;lt;/groupId&amp;gt;   &amp;lt;artifactId&amp;gt;junit&amp;lt;/artifactId&amp;gt;   &amp;lt;version&amp;gt;4.11&amp;lt;/versio">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/13/images/SSM%E6%95%B4%E5%90%88%E7%BB%93%E6%9E%84.png">
   
     <link rel="alternative" href="/atom.xml" title="Mr.J" type="application/atom+xml">
   
@@ -150,111 +158,323 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-SSM整合" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="实现spring-springmvc-mybatis的整合"><a href="#实现spring-springmvc-mybatis的整合" class="headerlink" title="实现spring+springmvc+mybatis的整合"></a><div align="center" style="color:red">实现spring+springmvc+mybatis的整合</div></h1><h2 id="1-这是我搭建的完整目录结构"><a href="#1-这是我搭建的完整目录结构" class="headerlink" title="1.这是我搭建的完整目录结构"></a>1.这是我搭建的完整目录结构</h2><p><img src="../images/SSM%E6%95%B4%E5%90%88%E7%BB%93%E6%9E%84.png" alt></p>
+<h2 id="2-具体代码"><a href="#2-具体代码" class="headerlink" title="2.具体代码"></a>2.具体代码</h2><h3 id="2-1整合所需要引入的依赖有"><a href="#2-1整合所需要引入的依赖有" class="headerlink" title="2.1整合所需要引入的依赖有"></a>2.1整合所需要引入的依赖有</h3><!-- 单元测试 -->
+<pre><code>&lt;dependency&gt;
+  &lt;groupId&gt;junit&lt;/groupId&gt;
+  &lt;artifactId&gt;junit&lt;/artifactId&gt;
+  &lt;version&gt;4.11&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;!-- 1.日志 --&gt;
+&lt;!-- 实现slf4j接口并整合 --&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;
+  &lt;artifactId&gt;logback-classic&lt;/artifactId&gt;
+  &lt;version&gt;1.1.1&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;!-- 2.数据库 --&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;mysql&lt;/groupId&gt;
+  &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+  &lt;version&gt;5.1.37&lt;/version&gt;
+  &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;c3p0&lt;/groupId&gt;
+  &lt;artifactId&gt;c3p0&lt;/artifactId&gt;
+  &lt;version&gt;0.9.1.2&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;!-- DAO: MyBatis --&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+  &lt;artifactId&gt;mybatis&lt;/artifactId&gt;
+  &lt;version&gt;3.3.0&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+  &lt;artifactId&gt;mybatis-spring&lt;/artifactId&gt;
+  &lt;version&gt;1.2.3&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;!-- 3.Servlet web --&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;taglibs&lt;/groupId&gt;
+  &lt;artifactId&gt;standard&lt;/artifactId&gt;
+  &lt;version&gt;1.1.2&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;jstl&lt;/groupId&gt;
+  &lt;artifactId&gt;jstl&lt;/artifactId&gt;
+  &lt;version&gt;1.2&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;
+  &lt;artifactId&gt;jackson-databind&lt;/artifactId&gt;
+  &lt;version&gt;2.5.4&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+  &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;
+  &lt;version&gt;3.1.0&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.aspectj&lt;/groupId&gt;
+  &lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt;
+  &lt;version&gt;1.8.6&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;!-- 4.Spring --&gt;
+&lt;!-- 1)Spring核心：spring-core，spring-beans，spring-context
+       spring-context-support ,spring-expression--&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-core&lt;/artifactId&gt;
+  &lt;version&gt;4.1.7.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-beans&lt;/artifactId&gt;
+  &lt;version&gt;4.1.7.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+  &lt;version&gt;4.1.7.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-context-support&lt;/artifactId&gt;
+    &lt;version&gt;5.1.5.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-expression&lt;/artifactId&gt;
+    &lt;version&gt;5.1.5.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;!-- 2)Spring DAO层 --&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-jdbc&lt;/artifactId&gt;
+  &lt;version&gt;4.1.7.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-tx&lt;/artifactId&gt;
+  &lt;version&gt;4.1.7.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;!-- 3)Spring web --&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-web&lt;/artifactId&gt;
+  &lt;version&gt;4.1.7.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
+  &lt;version&gt;4.1.7.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;!-- 4)Spring test --&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-test&lt;/artifactId&gt;
+  &lt;version&gt;4.1.7.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;!-- Map工具类 --&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;commons-collections&lt;/groupId&gt;
+  &lt;artifactId&gt;commons-collections&lt;/artifactId&gt;
+  &lt;version&gt;3.2&lt;/version&gt;
+&lt;/dependency&gt;</code></pre><h3 id="2-2前端界面代码-很简单的"><a href="#2-2前端界面代码-很简单的" class="headerlink" title="2.2前端界面代码(很简单的)"></a>2.2前端界面代码(很简单的)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">     &lt;a href=&quot;account/findAll&quot;&gt;测试&lt;/a&gt;</span><br><span class="line">&lt;h1&gt;测试表单&lt;/h1&gt;</span><br><span class="line">&lt;form action=&quot;</span><br><span class="line">account/save&quot; method=&quot;post&quot;&gt;</span><br><span class="line">    姓名:&lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;</span><br><span class="line">    金额:&lt;input type=&quot;text&quot; name=&quot;money&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;保存&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="效果如下"><a href="#效果如下" class="headerlink" title="效果如下:"></a>效果如下:</h4><form action="
+account/save" method="post">
+    姓名:<input type="text" name="name">
+    金额:<input type="text" name="money">
+    <input type="submit" value="保存">
+</form>
+
+<h3 id="2-3-domain-实体层"><a href="#2-3-domain-实体层" class="headerlink" title="2.3 domain(实体层)"></a>2.3 domain(实体层)</h3><div style="color:red">在pom.xml中引入lombok依赖，然后在实体类上添加@Data注解，可省略set/get方法和toString方法</div>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import lombok.Data;</span><br><span class="line"></span><br><span class="line">import java.io.Serializable;</span><br><span class="line">/*</span><br><span class="line">* 实体类</span><br><span class="line">* */</span><br><span class="line">@Data</span><br><span class="line">public class Account implements Serializable &#123;</span><br><span class="line">    private Integer id;</span><br><span class="line">    private String name;</span><br><span class="line">    private Double money;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-controller-web层"><a href="#2-4-controller-web层" class="headerlink" title="2.4 controller(web层)"></a>2.4 controller(web层)</h3><div style="color:red">这是前后端数据交互的层，主要用到springMvc框架技术</div>
+这里我只实现了插入数据和查询数据，修改数据和删除数据方法类似
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">@Controller</span><br><span class="line">@RequestMapping(&quot;/account&quot;)</span><br><span class="line">public class AccountController &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private AccountService accountService;</span><br><span class="line">/*</span><br><span class="line">* 查询数据</span><br><span class="line">* */</span><br><span class="line">    @RequestMapping(&quot;/findAll&quot;)</span><br><span class="line">    public String findAll(Model model)&#123;</span><br><span class="line">        System.out.println(&quot;表现层：查询所有账户。。。&quot;);</span><br><span class="line">        //调用service层的方法，完成整合springmvc</span><br><span class="line">        List&lt;Account&gt; list = accountService.findAll();</span><br><span class="line">        model.addAttribute(&quot;list&quot;,list);</span><br><span class="line">        return &quot;list&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    /*</span><br><span class="line">    * 插入数据</span><br><span class="line">    * */</span><br><span class="line">    @RequestMapping(&quot;/save&quot;)</span><br><span class="line">        public void save(Account account, HttpServletRequest request, HttpServletResponse response) throws IOException &#123;</span><br><span class="line">            System.out.println(&quot;表现层：插入信息到账户。。。&quot;);</span><br><span class="line">            //调用service层的方法，完成整合springmvc</span><br><span class="line">            accountService.saveAccount(account);</span><br><span class="line">            response.sendRedirect(request.getContextPath()+&quot;/account/findAll&quot;);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-5-dao层-也就是mapper层"><a href="#2-5-dao层-也就是mapper层" class="headerlink" title="2.5 dao层(也就是mapper层)"></a>2.5 dao层(也就是mapper层)</h3><div style="color:red">这里是实现后端与数据库连接的方法，主要运用到mybatis框架知识</div>
+可以使用注解的方式写SQL代码(查询语句简单,且量少)，也可以在.xml文件中写SQL代码(推荐)
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">* Mybatis框架</span><br><span class="line">* */</span><br><span class="line">@Repository</span><br><span class="line">public interface AccountDao &#123;</span><br><span class="line"></span><br><span class="line">    /*查询账户的所有信息有*/</span><br><span class="line">    //@Select(&quot;select * from account&quot;)</span><br><span class="line">    public List&lt;Account&gt; findAll();</span><br><span class="line"></span><br><span class="line">    /*保存账户信息*/</span><br><span class="line">    //通过注解形式查询</span><br><span class="line">  //  @Insert(&quot;insert into account (name,money) values(#&#123;name&#125;,#&#123;money&#125;)&quot;)</span><br><span class="line">    public void saveAccount(Account account);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-5-1-在-xml文件中编写SQL代码"><a href="#2-5-1-在-xml文件中编写SQL代码" class="headerlink" title="2.5.1 在.xml文件中编写SQL代码"></a>2.5.1 在.xml文件中编写SQL代码</h3><h4 id="1-以下是sql代码的-xml文件的位置"><a href="#1-以下是sql代码的-xml文件的位置" class="headerlink" title="1.以下是sql代码的.xml文件的位置"></a>1.以下是sql代码的.xml文件的位置</h4><p>注:SQL代码的.xml文件名要与dao中对应的类名一致,如：上述dao层是AccountDao,则要以AccountDao.xml命名</p>
+<p><img src="..%5Cimages%5CSQLCode.png" alt></p>
+<h4 id="2-6-service层-springMVC框架技术"><a href="#2-6-service层-springMVC框架技术" class="headerlink" title="2.6  service层(springMVC框架技术)"></a>2.6  service层(springMVC框架技术)</h4><h4 id="1-如下图接口部分编写方法，实现接口的类主要调用接口的方法，通过这样降低代码之间的耦合度，便于增加或减少方法"><a href="#1-如下图接口部分编写方法，实现接口的类主要调用接口的方法，通过这样降低代码之间的耦合度，便于增加或减少方法" class="headerlink" title="1. 如下图接口部分编写方法，实现接口的类主要调用接口的方法，通过这样降低代码之间的耦合度，便于增加或减少方法"></a>1. 如下图接口部分编写方法，实现接口的类主要调用接口的方法，通过这样降低代码之间的耦合度，便于增加或减少方法</h4><p><img src="..%5Cimages%5CservciceCode.png" alt></p>
+<h4 id="2-AccountService代码如下"><a href="#2-AccountService代码如下" class="headerlink" title="2.AccountService代码如下"></a>2.AccountService代码如下</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public interface AccountService &#123;</span><br><span class="line">    /*查询账户的所有信息有*/</span><br><span class="line">    public List&lt;Account&gt; findAll();</span><br><span class="line"></span><br><span class="line">    /*保存账户信息*/</span><br><span class="line">    public void saveAccount(Account account);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-AccountServiceImpl代码如下"><a href="#3-AccountServiceImpl代码如下" class="headerlink" title="3.AccountServiceImpl代码如下"></a>3.AccountServiceImpl代码如下</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@Service(&quot;accountService&quot;)//将该类交给springIOC容器保管</span><br><span class="line">public class AccountServiceImpl implements AccountService &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    private AccountDao accountDao;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public List&lt;Account&gt; findAll() &#123;</span><br><span class="line">        System.out.println(&quot;(service)业务层：查询所有账户信息。。。&quot;);</span><br><span class="line">        return accountDao.findAll();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void saveAccount(Account account) &#123;</span><br><span class="line">        System.out.println(&quot;(service)业务层：保存账户信息。。。&quot;);</span><br><span class="line">        accountDao.saveAccount(account);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-7-application-xml中的配置如下"><a href="#2-7-application-xml中的配置如下" class="headerlink" title="2.7 application.xml中的配置如下"></a>2.7 application.xml中的配置如下</h3><div style="color:red">注：该文件内主要写spring相关配置以及spring整合mybatis的相关配置</div>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">       xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</span><br><span class="line">       xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot; xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;</span><br><span class="line">       xsi:schemaLocation=&quot;http://www.springframework.org/schema/context</span><br><span class="line">       http://www.springframework.org/schema/context/spring-context-3.0.xsd</span><br><span class="line">       http://www.springframework.org/schema/beans</span><br><span class="line">       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd</span><br><span class="line">       http://www.springframework.org/schema/tx</span><br><span class="line">       http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd&quot;&gt;</span><br><span class="line">    &lt;!--</span><br><span class="line">    spring就会去自动扫描base-package对应的路径或者该路径的子包下面的java文件，</span><br><span class="line">    如果扫描到文件中带有@Service,@Component,@Repository,@Controller等这些注解的类，</span><br><span class="line">    则把这些类注册为bean</span><br><span class="line">    --&gt;</span><br><span class="line">    &lt;context:component-scan base-package=&quot;com.jgsu&quot;&gt;</span><br><span class="line">        &lt;!--配置哪些注解不扫描--&gt;</span><br><span class="line">        &lt;context:include-filter type=&quot;annotation&quot; expression=&quot;org.springframework.stereotype.Controller&quot;/&gt;</span><br><span class="line">    &lt;/context:component-scan&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--spring整合mybatis框架--&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- .配置数据库相关参数properties的属性：$&#123;url&#125; --&gt;</span><br><span class="line">    &lt;context:property-placeholder location=&quot;classpath:config.properties&quot;/&gt;</span><br><span class="line">    &lt;!--1.配置连接池--&gt;</span><br><span class="line">    &lt;bean id=&quot;dataSource&quot; class=&quot;com.mchange.v2.c3p0.ComboPooledDataSource&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;driverClass&quot; value=&quot;$&#123;driver&#125;&quot; /&gt;</span><br><span class="line">        &lt;property name=&quot;jdbcUrl&quot; value=&quot;$&#123;url&#125;&quot; /&gt;</span><br><span class="line">        &lt;property name=&quot;user&quot; value=&quot;$&#123;username&#125;&quot; /&gt;</span><br><span class="line">        &lt;property name=&quot;password&quot; value=&quot;$&#123;password&#125;&quot; /&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line">    &lt;!--2.配置sqlSession工厂--&gt;</span><br><span class="line">    &lt;bean class=&quot;org.mybatis.spring.SqlSessionFactoryBean&quot; id=&quot;sessionFactory&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;/&gt;</span><br><span class="line">        &lt;!-- 配置MyBaties全局配置文件:SqlMapConfig.xml --&gt;</span><br><span class="line">        &lt;property name=&quot;configLocation&quot; value=&quot;classpath:SqlMapConfig.xml&quot;/&gt;</span><br><span class="line">        &lt;!--将mapper文件中的(所有.xml文件)AccountDao.xml映射进去--&gt;</span><br><span class="line">        &lt;property name=&quot;mapperLocations&quot; value=&quot;classpath:mapper/*.xml&quot;/&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--3.配置扫描Dao接口包，动态实现Dao接口，注入到spring容器中--&gt;</span><br><span class="line">    &lt;bean id=&quot;mapperScanner&quot; class=&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;&gt;</span><br><span class="line">        &lt;!--给出需要扫描Dao包--&gt;</span><br><span class="line">        &lt;property name=&quot;basePackage&quot; value=&quot;com.jgsu.dao&quot;/&gt;</span><br><span class="line">        &lt;!--注入SqlSessionFactory--&gt;</span><br><span class="line">        &lt;property name=&quot;sqlSessionFactoryBeanName&quot; value=&quot;sessionFactory&quot;/&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--4.配置spring声明式事务管理器--&gt;</span><br><span class="line">      &lt;!--配置事务管理器--&gt;</span><br><span class="line">        &lt;bean class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot; id=&quot;transactionManager&quot;&gt;</span><br><span class="line">            &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;/&gt;</span><br><span class="line">        &lt;/bean&gt;</span><br><span class="line">      &lt;!--配置事务通知--&gt;</span><br><span class="line">       &lt;tx:advice id=&quot;txAdvice&quot; transaction-manager=&quot;transactionManager&quot;&gt;</span><br><span class="line">           &lt;tx:attributes&gt;</span><br><span class="line">               &lt;!--find方法打头的表示只读--&gt;</span><br><span class="line">               &lt;tx:method name=&quot;find*&quot; read-only=&quot;true&quot;/&gt;</span><br><span class="line">               &lt;tx:method name=&quot;*&quot; isolation=&quot;DEFAULT&quot;/&gt;</span><br><span class="line">           &lt;/tx:attributes&gt;</span><br><span class="line">       &lt;/tx:advice&gt;</span><br><span class="line">      &lt;!--配置AOP增强--&gt;</span><br><span class="line">    &lt;aop:config&gt;</span><br><span class="line">        &lt;aop:advisor advice-ref=&quot;txAdvice&quot; pointcut=&quot;execution(* com.jgsu.service.impl.*ServiceImpl.*(..))&quot;/&gt;</span><br><span class="line">    &lt;/aop:config&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-7-log4j-properties"><a href="#2-7-log4j-properties" class="headerlink" title="2.7 log4j.properties"></a>2.7 log4j.properties</h3><div style="color:red">注:配置日志文件，便于打印日志</div>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">log4j.rootLogger=INFO,Console,File  </span><br><span class="line">#定义日志输出目的地为控制台</span><br><span class="line">log4j.appender.Console=org.apache.log4j.ConsoleAppender  </span><br><span class="line">log4j.appender.Console.Target=System.out  </span><br><span class="line">#可以灵活地指定日志输出格式，下面一行是指定具体的格式</span><br><span class="line">log4j.appender.Console.layout = org.apache.log4j.PatternLayout  </span><br><span class="line">log4j.appender.Console.layout.ConversionPattern=[%c] - %m%n  </span><br><span class="line"></span><br><span class="line">#文件大小到达指定尺寸的时候产生一个新的文件</span><br><span class="line">log4j.appender.File = org.apache.log4j.RollingFileAppender  </span><br><span class="line">#指定输出目录</span><br><span class="line">log4j.appender.File.File = logs/ssm.log  </span><br><span class="line">#定义文件最大大小</span><br><span class="line">log4j.appender.File.MaxFileSize = 10MB  </span><br><span class="line"># 输出所以日志，如果换成DEBUG表示输出DEBUG以上级别日志</span><br><span class="line">log4j.appender.File.Threshold = ALL  </span><br><span class="line">log4j.appender.File.layout = org.apache.log4j.PatternLayout  </span><br><span class="line">log4j.appender.File.layout.ConversionPattern =[%p] [%d&#123;yyyy-MM-dd HH\:mm\:ss&#125;][%c]%m%n</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-8-config-properties"><a href="#2-8-config-properties" class="headerlink" title="2.8 config.properties"></a>2.8 config.properties</h3><div style="color:red">连接数据库的基本信息</div>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//config.properties中创建数据库连接路线</span><br><span class="line">driver=com.mysql.jdbc.Driver</span><br><span class="line">url=jdbc:mysql://localhost:3306/ssm</span><br><span class="line">username=root</span><br><span class="line">password=xxxx</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-9-springmvc-xml"><a href="#2-9-springmvc-xml" class="headerlink" title="2.9 springmvc.xml"></a>2.9 springmvc.xml</h3><div style="color:red">编写springmvc相关配置</div>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">       xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot;</span><br><span class="line">       xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</span><br><span class="line">       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans</span><br><span class="line">            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd</span><br><span class="line">            http://www.springframework.org/schema/context</span><br><span class="line">            http://www.springframework.org/schema/context/spring-context-3.0.xsd</span><br><span class="line">            http://www.springframework.org/schema/mvc</span><br><span class="line">            http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd</span><br><span class="line">            http://www.springframework.org/schema/context</span><br><span class="line">            http://www.springframework.org/schema/context/spring-context-3.0.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--1.开启注解扫描，只扫描Controller注解--&gt;</span><br><span class="line">    &lt;context:component-scan base-package=&quot;com.jgsu&quot;&gt;</span><br><span class="line">        &lt;context:include-filter type=&quot;annotation&quot; expression=&quot;org.springframework.stereotype.Controller&quot;/&gt;</span><br><span class="line">    &lt;/context:component-scan&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--2.配置视图解析器对象--&gt;</span><br><span class="line">    &lt;bean id=&quot;internalResourceViewResolver&quot; class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;prefix&quot; value=&quot;/WEB-INF/pages/&quot;/&gt;</span><br><span class="line">        &lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot;/&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--3.过滤静态资源--&gt;</span><br><span class="line">    &lt;mvc:resources mapping=&quot;/css/**&quot; location=&quot;/css/&quot;/&gt;</span><br><span class="line">    &lt;mvc:resources mapping=&quot;/images/**&quot; location=&quot;/images/&quot;/&gt;</span><br><span class="line">    &lt;mvc:resources mapping=&quot;/js/**&quot; location=&quot;/js/&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--4.开启springmvc注解支持--&gt;</span><br><span class="line">    &lt;mvc:annotation-driven/&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+
+<div style="color:red">源码地址:https://github.com/zuojunZzz/ssm</div>
+========================
+
+<h4 id="座右铭-日积月累才能拥有真本领，多思考，多实践"><a href="#座右铭-日积月累才能拥有真本领，多思考，多实践" class="headerlink" title="座右铭:日积月累才能拥有真本领，多思考，多实践"></a><p align="right" style="color:red">座右铭:日积月累才能拥有真本领，多思考，多实践</p></h4><h5 id="作者-zuojunZzz"><a href="#作者-zuojunZzz" class="headerlink" title="作者:zuojunZzz"></a><p align="right" style="color:red">作者:zuojunZzz</p></h5>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/13/SSM整合/" class="archive-article-date">
-  	<time datetime="2019-08-13T05:58:17.873Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-13</time>
-</a>
-        </div>
-    	 
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/13/SSM整合/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/12/我的第一篇博客文章/" class="archive-article-date">
-  	<time datetime="2019-08-12T10:15:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-12</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/12/我的第一篇博客文章/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">我的第一篇博客文章</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/12/我的第一篇博客文章/">我的第一篇博客文章</a>
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">测试用</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/12/hello-world/" class="archive-article-date">
-  	<time datetime="2019-08-12T10:12:48.163Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/12/hello-world/">Hello World</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
+  
+  <div id="SOHUCS" sid="SSM整合" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cyunFVVri",
+        conf: "17ff682da0e03e5d168fd6e16cf712a4"
+    });
+</script>
+</script>
+  
+
+  
+
+  
 
 
           </div>
@@ -277,8 +497,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
