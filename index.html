@@ -152,6 +152,247 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-泛型-2019-08-29" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><h2 id="什么是泛型"><a href="#什么是泛型" class="headerlink" title="什么是泛型"></a>什么是泛型</h2><p>泛型，即参数化类型，顾名思义就是将原来具体的类型转化为类似于方法的变量参数，然后在调用时传入具体的参数。比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list=new ArrayList&lt;&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>ArrayList就是个泛型类，我们通过设定不同的类型，可以往集合里面存储不同类型的数据类型（而且只能存储设定的数据类型，这是泛型的优势之一）</p>
+<h2 id="使用泛型的好处"><a href="#使用泛型的好处" class="headerlink" title="使用泛型的好处"></a>使用泛型的好处</h2><ul>
+<li>使用泛型之前我们一般是使用强制类型转换达到一种类型转换为另一种数据类型，但是如果不能强制类型转换的在编译时不会出错，到运行期在会出错，而泛型的引入使得原本不能强制转换的类型在编译器即可报错，这样大大节省了时间。它解决了向下转型时出现类型转换异常的问题。</li>
+<li>泛型的引入使得我们可以对同一套代码引入多种数据类型</li>
+</ul>
+<h2 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h2><p>泛型类就是写类的时候使用泛型的形式，语法如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">类名&lt;T&gt;  // T代表一个类型的名称</span><br><span class="line">当需添加多个参数时为，类名&lt;K,V&gt;</span><br></pre></td></tr></table></figure>
+
+<p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class demo&lt;T&gt;&#123;</span><br><span class="line">      private T name;</span><br><span class="line">      private T msg;</span><br><span class="line"></span><br><span class="line">      public T getName() &#123;</span><br><span class="line">          return name;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      public void setName(T name) &#123;</span><br><span class="line">          this.name = name;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      public T getMsg() &#123;</span><br><span class="line">          return msg;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      public void setMsg(T msg) &#123;</span><br><span class="line">          this.msg = msg;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="泛型方法"><a href="#泛型方法" class="headerlink" title="泛型方法"></a>泛型方法</h2><p>泛型方法既可以存在于泛型类中也可以存在于普通类中。当我们能用泛型方法解决问题时尽量用泛型方法解决。<br>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public &lt;E&gt; void laugh(E e)&#123;  // （E e）表示传值类型任意，可为String类型也可为int型或者其他</span><br><span class="line">          System.out.println(&quot;使用的泛型方法&quot;+e);</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="泛型方法的基本特征"><a href="#泛型方法的基本特征" class="headerlink" title="泛型方法的基本特征"></a>泛型方法的基本特征</h3><ul>
+<li>public与返回值中间非常重要，可以理解为声明此方法为泛型方法。</li>
+<li>只有声明了的方法才是泛型方法，泛型类中的使用了泛型的成员方法并不是泛型方法。</li>
+<li>表明该方法将使用泛型类型T，此时才可以在方法中使用泛型类型T。</li>
+<li>与泛型类的定义一样，此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型。与泛型类的定义一样，此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型。与泛型类的定义一样，此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型。</li>
+</ul>
+<h2 id="泛型接口"><a href="#泛型接口" class="headerlink" title="泛型接口"></a>泛型接口</h2><p>知道怎么写接口就知道怎么写泛型接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//定义一个泛型接口</span><br><span class="line">public interface Generator&lt;T&gt; &#123;</span><br><span class="line">    public T next();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注: 该泛型接口的实现类的所有地方都应该替换成所要传入的参数类型，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class DataHolder implements Generator&lt;String&gt;&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public String next() &#123;</span><br><span class="line">    	return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="泛型进阶篇"><a href="#泛型进阶篇" class="headerlink" title="泛型进阶篇"></a>泛型进阶篇</h2><h3 id="1-泛型的类型擦除机制"><a href="#1-泛型的类型擦除机制" class="headerlink" title="1. 泛型的类型擦除机制"></a>1. 泛型的类型擦除机制</h3><p>了解类型擦除机制前先看个例子:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;?&gt; class1=new ArrayList&lt;String&gt;().getClass();</span><br><span class="line">Class&lt;?&gt; class2=new ArrayList&lt;Integer&gt;().getClass();</span><br><span class="line">System.out.println(class1);		//class java.util.ArrayList</span><br><span class="line">System.out.println(class2);		//class java.util.ArrayList</span><br><span class="line">System.out.println(class1.equals(class2));	//true</span><br></pre></td></tr></table></figure>
+
+<p>对，这就是类型擦除机制，当我们同一个ArrayList类型中传入两个不同参数类型，运行后两者相等，这是因为在编译时编译器移除了两者的参数类型使得两个都为ArrayList类型，这就是类型擦除机制。</p>
+<h3 id="2-限制泛型可用类型"><a href="#2-限制泛型可用类型" class="headerlink" title="2. 限制泛型可用类型"></a>2. 限制泛型可用类型</h3><p>语法:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class 类名&lt;T extends anyClass&gt;  // anyClass 为某个接口或类</span><br></pre></td></tr></table></figure>
+
+<p>使用泛型限制后，泛型类的类型必须实现或继承 anyClass这个接口或类，但进行泛型限制时必须使用extends关键字。<br>例如:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class LimitClass&lt;T extends List&gt;&#123;  // 限制泛型的类型，只能实现List类中的类型</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        // 可以实例化已经实现List接口的类</span><br><span class="line">        LimitClass&lt;ArrayList&gt; a  = new LimitClass&lt;&gt;();   // ArrayList</span><br><span class="line">        LimitClass&lt;LinkedList&gt; b  = new LimitClass&lt;&gt;();  // LinkedList</span><br><span class="line">      //  LimitClass&lt;String&gt; c = new LimitClass&lt;String&gt;(); // String 没有实现List()接口，所以编译期会报错</span><br><span class="line">     //   LimitClass&lt;HashMap&gt; d = new LimitClass&lt;HashMap&gt;();  // HashMap没有实现List()接口，所以编译期会报错</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-使用类型通配符"><a href="#3-使用类型通配符" class="headerlink" title="3. 使用类型通配符"></a>3. 使用类型通配符</h3><p>语法:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">泛型名&lt;? extends List&gt;  // 上界通配符</span><br><span class="line">泛型名&lt;? super List&gt;  // 下界通配符</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>上界通配符<br>例子:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Box&lt;? extends Fruit&gt; box = new Box&lt;Orange&gt;(new Orange);</span><br><span class="line">//不能存入任何元素</span><br><span class="line">box.set(new Fruit);  //illegal</span><br><span class="line">box.set(new Orange);//illegal</span><br><span class="line">//取出来的东西只能存放在Fruit或它的基类</span><br><span class="line">Fruit fruit = box.get();</span><br><span class="line">Object fruit1 = box.get();</span><br><span class="line">Orange fruit2 = box.get(); //illegal</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>上面的注释已经很清楚了， 往 Box 里放东西的 set() 方法失效， 但是 get() 方法有效。上界只能外围取，不能往里放</p>
+<ul>
+<li>下界通配符<br>因为下界规定元素的最小的粒度，实际上是容器的元素的类型控制。所以放比 Fruit 粒度小的如 Orange、Apple 都行， 但往外取时， 只有所有类的基类Object对象才能装下。但是这样的话，元素的类型信息就全部消失了。<h3 id="PECS-原则"><a href="#PECS-原则" class="headerlink" title="PECS 原则"></a>PECS 原则</h3></li>
+</ul>
+<ol>
+<li><p>如果要从集合中读取类型T的数据， 并且不能写入，可以使用 上界通配符（&lt;？extends&gt;）—Producer Extends。</p>
+</li>
+<li><p>如果要从集合中写入类型T 的数据， 并且不需要读取，可以使用下界通配符（&lt;? super&gt;）—Consumer Super。</p>
+</li>
+<li><p>如果既要存又要取， 那么就要使用任何通配符。</p>
+</li>
+</ol>
+<hr>
+<ul>
+<li>注: 对于泛型的类型擦除机制，限制泛型可用类型，使用类型通配符属于泛型的高级用法，这里我这里暂时了解下就行，有兴趣的可自己<a href="http://baidu.com" target="_blank" rel="noopener">百度</a>。详情可参考:<a href="https://juejin.im/post/5b614848e51d45355d51f792#heading-0" target="_blank" rel="noopener">深入理解Java泛型</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/29/泛型-2019-08-29/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-枚举类型-2019-29" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h1><h3 id="1-什么是枚举类型"><a href="#1-什么是枚举类型" class="headerlink" title="1. 什么是枚举类型"></a>1. 什么是枚举类型</h3><p>它是一种特殊的数据类型，之所以特殊是因为它既是一种类(class)类型却又比类类型多了些特殊的约束，但是这些约束的存在也造就了枚举类型的简洁性、安全性以及便捷性。</p>
+<h3 id="2-优势"><a href="#2-优势" class="headerlink" title="2. 优势"></a>2. 优势</h3><p>枚举类型声明提供了一种用户友好的变量定义方法，枚举数据类型所有可能出现的值，它具有以下特点</p>
+<ul>
+<li>类型安全</li>
+<li>紧凑有效的数据定义</li>
+<li>可以和其他程序完美交互</li>
+<li>运行效率高</li>
+</ul>
+<h3 id="3-为什么要引入枚举"><a href="#3-为什么要引入枚举" class="headerlink" title="3. 为什么要引入枚举"></a>3. 为什么要引入枚举</h3><ul>
+<li><p>不用枚举的话:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 也称int枚举模式(类型不安全)</span><br><span class="line">class FavouriteColor_class&#123;</span><br><span class="line">    public static final  int RED   = 1;</span><br><span class="line">    public static final  int BLACK = 3;</span><br><span class="line">    public static final  int GREEN = 2;</span><br><span class="line">    public static final  int BLUE  = 4;</span><br><span class="line">    public static final  int WHITE = 5;</span><br><span class="line">    public static final  int BROWN = 6;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用枚举类型后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//枚举类型关键字:enum(类型安全)</span><br><span class="line">public enum FavouriteColor &#123;</span><br><span class="line">    //枚举成员</span><br><span class="line">    RED,GREEN,BLACK,BLUE,WHITE,BROWN</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>两者比较，省略了大量的代码，以及使得结构更清晰，代码更易维护与扩展</p>
+<ul>
+<li>例子</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">//未用枚举类型时设置的常量</span><br><span class="line">package Test_Enum;</span><br><span class="line">public interface NotEnum &#123;</span><br><span class="line">    public static final int RED = 1;</span><br><span class="line">    public static final int BLACK = 3;</span><br><span class="line">    public static final int GREEN = 2;</span><br><span class="line">    public static final int BLUE = 4;</span><br><span class="line">    public static final int WHITE = 5;</span><br><span class="line">    public static final int BROWN = 6;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">// 实现该接口并写写doit()方法，传参为int型</span><br><span class="line">public class testNotEnum implements NotEnum &#123;</span><br><span class="line">    public static void doit(int i) &#123;</span><br><span class="line">        switch (i) &#123;</span><br><span class="line">            case NotEnum.BLACK:</span><br><span class="line">                System.out.println(&quot;doit()的黑色&quot;);</span><br><span class="line">                break;</span><br><span class="line">            case NotEnum.BLUE:</span><br><span class="line">                System.out.println(&quot;doit()的蓝色&quot;);</span><br><span class="line">                break;</span><br><span class="line">            case NotEnum.BROWN:</span><br><span class="line">                System.out.println(&quot;doit()的棕色&quot;);</span><br><span class="line">                break;</span><br><span class="line">            case NotEnum.GREEN:</span><br><span class="line">                System.out.println(&quot;doit()的绿色&quot;);</span><br><span class="line">                break;</span><br><span class="line">            case NotEnum.WHITE:</span><br><span class="line">                System.out.println(&quot;doit()的白色&quot;);</span><br><span class="line">                break;</span><br><span class="line">            case NotEnum.RED:</span><br><span class="line">                System.out.println(&quot;doit()的红色&quot;);</span><br><span class="line">                break;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">// 使用枚举类型，并写doit2()方法，传参为该枚举类</span><br><span class="line">public enum WithEnum &#123;</span><br><span class="line">    RED,BLACK,GREEN,BLUE,WHITE,BROWN;</span><br><span class="line">    public static void doit2(WithEnum c) &#123;</span><br><span class="line">            switch (c) &#123;</span><br><span class="line">                case BLACK:</span><br><span class="line">                    System.out.println(&quot;doit2()的黑色&quot;);</span><br><span class="line">                    break;</span><br><span class="line">                case BLUE:</span><br><span class="line">                    System.out.println(&quot;doit2()的蓝色&quot;);</span><br><span class="line">                    break;</span><br><span class="line">                case BROWN:</span><br><span class="line">                    System.out.println(&quot;doit2()的棕色&quot;);</span><br><span class="line">                    break;</span><br><span class="line">                case GREEN:</span><br><span class="line">                    System.out.println(&quot;doit2()的绿色&quot;);</span><br><span class="line">                    break;</span><br><span class="line">                case WHITE:</span><br><span class="line">                    System.out.println(&quot;doit2()的白色&quot;);</span><br><span class="line">                    break;</span><br><span class="line">                case RED:</span><br><span class="line">                    System.out.println(&quot;doit2()的红色&quot;);</span><br><span class="line">                    break;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 测试：</span><br><span class="line">public class test &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        WithEnum.doit2(WithEnum.BLUE);</span><br><span class="line">        testNotEnum.doit(testNotEnum.BLACK);</span><br><span class="line">        WithEnum.doit2(WithEnum.RED);</span><br><span class="line">        testNotEnum.doit(7);  //传值为:7 不在范围内，不报错，但没有数据，</span><br><span class="line">        //WithEnum.doit2(2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 输出结果：</span><br><span class="line">doit2()的蓝色</span><br><span class="line">doit()的黑色</span><br><span class="line">doit2()的红色</span><br></pre></td></tr></table></figure>
+
+<p><strong>原因:</strong><br>没用枚举时，方法的传参为int型，当传入的值不在该范围内但为int型时，编译及运行不会出错，但没有结果。而使用枚举类型时，传的参可以为该枚举类，所以当传入不存在的值时,编译就会报错。这样就使得类型安全了</p>
+<h3 id="4-深入了解枚举类型"><a href="#4-深入了解枚举类型" class="headerlink" title="4. 深入了解枚举类型"></a>4. 深入了解枚举类型</h3><ul>
+<li>几种枚举类型常用方法</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th align="center">具体含义</th>
+<th align="right">使用方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>values()</td>
+<td align="center">枚举成员以数组形式返回</td>
+<td align="right">枚举类型名称.values()</td>
+</tr>
+<tr>
+<td>valueOf()</td>
+<td align="center">将普通字符串转换为枚举实例</td>
+<td align="right">枚举类型名称.valueOf()</td>
+</tr>
+<tr>
+<td>compareTo()</td>
+<td align="center">比较两个枚举对象在定义时的顺序</td>
+<td align="right">枚举成员.compareTo()</td>
+</tr>
+<tr>
+<td>ordinal</td>
+<td align="center">用于得到枚举成员位置索引</td>
+<td align="right">枚举成员.ordinal()</td>
+</tr>
+</tbody></table>
+<h4 id="1-values-方法"><a href="#1-values-方法" class="headerlink" title="1. values()方法"></a>1. values()方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class testValues &#123;</span><br><span class="line">    enum Color&#123;    // 将常量放在枚举类型中</span><br><span class="line">        RED,BLACK,BLUE,YELLOW;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 循环由values()返回的数组</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        for (int i = 0; i &lt; Color.values().length; i++) &#123;</span><br><span class="line">            // 将枚举成员变量打印</span><br><span class="line">            System.out.println(&quot;枚举类型成员变量: &quot;+Color.values()[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">/* 输出结果：</span><br><span class="line">枚举类型成员变量: RED</span><br><span class="line">枚举类型成员变量: BLACK</span><br><span class="line">枚举类型成员变量: BLUE</span><br><span class="line">枚举类型成员变量: YELLOW</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-valueOf-和compareTo-方法"><a href="#2-valueOf-和compareTo-方法" class="headerlink" title="2. valueOf()和compareTo()方法"></a>2. valueOf()和compareTo()方法</h4><p>valueOf()和compareTo()方法一般一起用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public class testValues &#123;</span><br><span class="line">    enum Color&#123;    // 将常量放在枚举类型中</span><br><span class="line">        RED,BLACK,BLUE,YELLOW;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void  compare(Color color)&#123;</span><br><span class="line">        // 根据values()返回的数组做循环操作</span><br><span class="line">        for (int i = 0; i &lt; Color.values().length; i++) &#123;</span><br><span class="line">            // 调用compareTo方法与某个数进行比较，返回结果为正值则表示在枚举对象之前，相同则为0，否则为负数</span><br><span class="line">            System.out.println(color + &quot;与&quot; + Color.values()[i] + &quot;的比较结果为:&quot; + color.compareTo(Color.values()[i]));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">       compare(Color.valueOf(&quot;BLUE&quot;));  // 调用valueOf方法</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/*输出结果:</span><br><span class="line">BLUE与RED的比较结果为:2</span><br><span class="line">BLUE与BLACK的比较结果为:1</span><br><span class="line">BLUE与BLUE的比较结果为:0</span><br><span class="line">BLUE与YELLOW的比较结果为:-1</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>枚举类型中的构造方法</li>
+</ul>
+<p><strong>注：</strong> 枚举类型中可以添加构造方法，但该方法必须为private修饰,也可以实现接口中的方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public class test_01 &#123;</span><br><span class="line">    enum Food&#123;</span><br><span class="line">        APPLE(&quot;苹果&quot;),</span><br><span class="line">        BANANA(&quot;香蕉&quot;),</span><br><span class="line">        ORANGE(&quot;橘子&quot;);</span><br><span class="line"></span><br><span class="line">        private String description;  // private变量description</span><br><span class="line">        Food()&#123;&#125;</span><br><span class="line">        Food(String description) &#123;  // 创建description构造方法</span><br><span class="line">            this.description = description;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public String getDescription() &#123;</span><br><span class="line">            return description;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void setDescription(String description) &#123;</span><br><span class="line">            this.description = description;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        for (int i = 0; i &lt;Food.values().length ; i++) &#123;</span><br><span class="line">            System.out.println(Food.values()[i]+&quot;调用getDescription()方法为：&quot;+Food.values()[i].description);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 输出结果：</span><br><span class="line">APPLE调用getDescription()方法为：苹果</span><br><span class="line">BANANA调用getDescription()方法为：香蕉</span><br><span class="line">ORANGE调用getDescription()方法为：橘子</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>枚举类型继承于Enum类，所以只能用实现接口，不能再继承其他类。</li>
+<li>枚举类型会编译器处理成 抽象类（含抽象方法）或 final类。</li>
+<li>枚举成员都是public static final 的枚举实例常量。枚举成员必须是最先声明,且只能声明一行（逗号隔开，分号结束）。</li>
+<li>构造方法必须是 private，如果定义了有参的构造器，就要注意枚举成员的声明。没有定义构造方法时，编译器为枚举类自动添加的是一个带两个参数的构造方法,并不是无参构造器。</li>
+<li>编译器会为枚举类添加 values() 和 valueOf()两个方法。</li>
+<li>没有抽象方法的枚举类，被编译器处理成 final 类。如果是包含抽象方法的枚举类则被处理成抽象abstract类。</li>
+<li>Enum实现了Serializable接口，并且几乎所有方法都是 final方法</li>
+</ul>
+<p><strong>参考文章</strong></p>
+<ul>
+<li><a href="https://juejin.im/post/5ad970ccf265da0b7b357365#heading-8" target="_blank" rel="noopener">https://juejin.im/post/5ad970ccf265da0b7b357365#heading-8</a></li>
+<li><a href="https://blog.csdn.net/javazejian/article/details/71333103#%E6%9E%9A%E4%B8%BE%E7%9A%84%E8%BF%9B%E9%98%B6%E7%94%A8%E6%B3%95" target="_blank" rel="noopener">https://blog.csdn.net/javazejian/article/details/71333103#%E6%9E%9A%E4%B8%BE%E7%9A%84%E8%BF%9B%E9%98%B6%E7%94%A8%E6%B3%95</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/29/枚举类型-2019-29/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-向上转型和向下转型-2019-8-26" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

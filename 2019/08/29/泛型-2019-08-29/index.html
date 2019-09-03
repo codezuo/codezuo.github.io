@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | Mr.J</title>
+  <title>Mr.J</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="泛型什么是泛型泛型，即参数化类型，顾名思义就是将原来具体的类型转化为类似于方法的变量参数，然后在调用时传入具体的参数。比如： 1List&amp;lt;String&amp;gt; list=new ArrayList&amp;lt;&amp;gt;();  ArrayList就是个泛型类，我们通过设定不同的类型，可以往集合里面存储不同类型的数据类型（而且只能存储设定的数据类型，这是泛型的优势之一） 使用泛型的好处 使用泛型之前">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Mr.J">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/08/29/泛型-2019-08-29/index.html">
 <meta property="og:site_name" content="Mr.J">
+<meta property="og:description" content="泛型什么是泛型泛型，即参数化类型，顾名思义就是将原来具体的类型转化为类似于方法的变量参数，然后在调用时传入具体的参数。比如： 1List&amp;lt;String&amp;gt; list=new ArrayList&amp;lt;&amp;gt;();  ArrayList就是个泛型类，我们通过设定不同的类型，可以往集合里面存储不同类型的数据类型（而且只能存储设定的数据类型，这是泛型的优势之一） 使用泛型的好处 使用泛型之前">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-03T13:14:46.314Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mr.J">
+<meta name="twitter:description" content="泛型什么是泛型泛型，即参数化类型，顾名思义就是将原来具体的类型转化为类似于方法的变量参数，然后在调用时传入具体的参数。比如： 1List&amp;lt;String&amp;gt; list=new ArrayList&amp;lt;&amp;gt;();  ArrayList就是个泛型类，我们通过设定不同的类型，可以往集合里面存储不同类型的数据类型（而且只能存储设定的数据类型，这是泛型的优势之一） 使用泛型的好处 使用泛型之前">
   
     <link rel="alternative" href="/atom.xml" title="Mr.J" type="application/atom+xml">
   
@@ -150,132 +154,214 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-泛型-2019-08-29" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><h2 id="什么是泛型"><a href="#什么是泛型" class="headerlink" title="什么是泛型"></a>什么是泛型</h2><p>泛型，即参数化类型，顾名思义就是将原来具体的类型转化为类似于方法的变量参数，然后在调用时传入具体的参数。比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list=new ArrayList&lt;&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>ArrayList就是个泛型类，我们通过设定不同的类型，可以往集合里面存储不同类型的数据类型（而且只能存储设定的数据类型，这是泛型的优势之一）</p>
+<h2 id="使用泛型的好处"><a href="#使用泛型的好处" class="headerlink" title="使用泛型的好处"></a>使用泛型的好处</h2><ul>
+<li>使用泛型之前我们一般是使用强制类型转换达到一种类型转换为另一种数据类型，但是如果不能强制类型转换的在编译时不会出错，到运行期在会出错，而泛型的引入使得原本不能强制转换的类型在编译器即可报错，这样大大节省了时间。它解决了向下转型时出现类型转换异常的问题。</li>
+<li>泛型的引入使得我们可以对同一套代码引入多种数据类型</li>
+</ul>
+<h2 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h2><p>泛型类就是写类的时候使用泛型的形式，语法如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">类名&lt;T&gt;  // T代表一个类型的名称</span><br><span class="line">当需添加多个参数时为，类名&lt;K,V&gt;</span><br></pre></td></tr></table></figure>
+
+<p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class demo&lt;T&gt;&#123;</span><br><span class="line">      private T name;</span><br><span class="line">      private T msg;</span><br><span class="line"></span><br><span class="line">      public T getName() &#123;</span><br><span class="line">          return name;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      public void setName(T name) &#123;</span><br><span class="line">          this.name = name;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      public T getMsg() &#123;</span><br><span class="line">          return msg;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      public void setMsg(T msg) &#123;</span><br><span class="line">          this.msg = msg;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="泛型方法"><a href="#泛型方法" class="headerlink" title="泛型方法"></a>泛型方法</h2><p>泛型方法既可以存在于泛型类中也可以存在于普通类中。当我们能用泛型方法解决问题时尽量用泛型方法解决。<br>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public &lt;E&gt; void laugh(E e)&#123;  // （E e）表示传值类型任意，可为String类型也可为int型或者其他</span><br><span class="line">          System.out.println(&quot;使用的泛型方法&quot;+e);</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="泛型方法的基本特征"><a href="#泛型方法的基本特征" class="headerlink" title="泛型方法的基本特征"></a>泛型方法的基本特征</h3><ul>
+<li>public与返回值中间非常重要，可以理解为声明此方法为泛型方法。</li>
+<li>只有声明了的方法才是泛型方法，泛型类中的使用了泛型的成员方法并不是泛型方法。</li>
+<li>表明该方法将使用泛型类型T，此时才可以在方法中使用泛型类型T。</li>
+<li>与泛型类的定义一样，此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型。与泛型类的定义一样，此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型。与泛型类的定义一样，此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型。</li>
+</ul>
+<h2 id="泛型接口"><a href="#泛型接口" class="headerlink" title="泛型接口"></a>泛型接口</h2><p>知道怎么写接口就知道怎么写泛型接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//定义一个泛型接口</span><br><span class="line">public interface Generator&lt;T&gt; &#123;</span><br><span class="line">    public T next();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注: 该泛型接口的实现类的所有地方都应该替换成所要传入的参数类型，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class DataHolder implements Generator&lt;String&gt;&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public String next() &#123;</span><br><span class="line">    	return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="泛型进阶篇"><a href="#泛型进阶篇" class="headerlink" title="泛型进阶篇"></a>泛型进阶篇</h2><h3 id="1-泛型的类型擦除机制"><a href="#1-泛型的类型擦除机制" class="headerlink" title="1. 泛型的类型擦除机制"></a>1. 泛型的类型擦除机制</h3><p>了解类型擦除机制前先看个例子:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;?&gt; class1=new ArrayList&lt;String&gt;().getClass();</span><br><span class="line">Class&lt;?&gt; class2=new ArrayList&lt;Integer&gt;().getClass();</span><br><span class="line">System.out.println(class1);		//class java.util.ArrayList</span><br><span class="line">System.out.println(class2);		//class java.util.ArrayList</span><br><span class="line">System.out.println(class1.equals(class2));	//true</span><br></pre></td></tr></table></figure>
+
+<p>对，这就是类型擦除机制，当我们同一个ArrayList类型中传入两个不同参数类型，运行后两者相等，这是因为在编译时编译器移除了两者的参数类型使得两个都为ArrayList类型，这就是类型擦除机制。</p>
+<h3 id="2-限制泛型可用类型"><a href="#2-限制泛型可用类型" class="headerlink" title="2. 限制泛型可用类型"></a>2. 限制泛型可用类型</h3><p>语法:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class 类名&lt;T extends anyClass&gt;  // anyClass 为某个接口或类</span><br></pre></td></tr></table></figure>
+
+<p>使用泛型限制后，泛型类的类型必须实现或继承 anyClass这个接口或类，但进行泛型限制时必须使用extends关键字。<br>例如:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class LimitClass&lt;T extends List&gt;&#123;  // 限制泛型的类型，只能实现List类中的类型</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        // 可以实例化已经实现List接口的类</span><br><span class="line">        LimitClass&lt;ArrayList&gt; a  = new LimitClass&lt;&gt;();   // ArrayList</span><br><span class="line">        LimitClass&lt;LinkedList&gt; b  = new LimitClass&lt;&gt;();  // LinkedList</span><br><span class="line">      //  LimitClass&lt;String&gt; c = new LimitClass&lt;String&gt;(); // String 没有实现List()接口，所以编译期会报错</span><br><span class="line">     //   LimitClass&lt;HashMap&gt; d = new LimitClass&lt;HashMap&gt;();  // HashMap没有实现List()接口，所以编译期会报错</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-使用类型通配符"><a href="#3-使用类型通配符" class="headerlink" title="3. 使用类型通配符"></a>3. 使用类型通配符</h3><p>语法:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">泛型名&lt;? extends List&gt;  // 上界通配符</span><br><span class="line">泛型名&lt;? super List&gt;  // 下界通配符</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>上界通配符<br>例子:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Box&lt;? extends Fruit&gt; box = new Box&lt;Orange&gt;(new Orange);</span><br><span class="line">//不能存入任何元素</span><br><span class="line">box.set(new Fruit);  //illegal</span><br><span class="line">box.set(new Orange);//illegal</span><br><span class="line">//取出来的东西只能存放在Fruit或它的基类</span><br><span class="line">Fruit fruit = box.get();</span><br><span class="line">Object fruit1 = box.get();</span><br><span class="line">Orange fruit2 = box.get(); //illegal</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>上面的注释已经很清楚了， 往 Box 里放东西的 set() 方法失效， 但是 get() 方法有效。上界只能外围取，不能往里放</p>
+<ul>
+<li>下界通配符<br>因为下界规定元素的最小的粒度，实际上是容器的元素的类型控制。所以放比 Fruit 粒度小的如 Orange、Apple 都行， 但往外取时， 只有所有类的基类Object对象才能装下。但是这样的话，元素的类型信息就全部消失了。<h3 id="PECS-原则"><a href="#PECS-原则" class="headerlink" title="PECS 原则"></a>PECS 原则</h3></li>
+</ul>
+<ol>
+<li><p>如果要从集合中读取类型T的数据， 并且不能写入，可以使用 上界通配符（&lt;？extends&gt;）—Producer Extends。</p>
+</li>
+<li><p>如果要从集合中写入类型T 的数据， 并且不需要读取，可以使用下界通配符（&lt;? super&gt;）—Consumer Super。</p>
+</li>
+<li><p>如果既要存又要取， 那么就要使用任何通配符。</p>
+</li>
+</ol>
+<hr>
+<ul>
+<li>注: 对于泛型的类型擦除机制，限制泛型可用类型，使用类型通配符属于泛型的高级用法，这里我这里暂时了解下就行，有兴趣的可自己<a href="http://baidu.com" target="_blank" rel="noopener">百度</a>。详情可参考:<a href="https://juejin.im/post/5b614848e51d45355d51f792#heading-0" target="_blank" rel="noopener">深入理解Java泛型</a></li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/29/泛型-2019-08-29/" class="archive-article-date">
-  	<time datetime="2019-08-29T09:04:48.357Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-29</time>
-</a>
-        </div>
-    	 
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/29/泛型-2019-08-29/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/29/枚举类型-2019-29/" class="archive-article-date">
-  	<time datetime="2019-08-29T03:31:45.115Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-29</time>
-</a>
-        </div>
-    	 
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/26/向上转型和向下转型-2019-8-26/" class="archive-article-date">
-  	<time datetime="2019-08-26T02:45:25.294Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-26</time>
-</a>
-        </div>
-    	 
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/18/包装类-2019-8-18/" class="archive-article-date">
-  	<time datetime="2019-08-18T06:01:32.872Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-18</time>
-</a>
-        </div>
-    	 
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/13/SSM整合/" class="archive-article-date">
-  	<time datetime="2019-08-13T05:58:17.873Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-13</time>
-</a>
-        </div>
-    	 
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/08/29/枚举类型-2019-29/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+  <div id="SOHUCS" sid="泛型-2019-08-29" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cyunFVVri",
+        conf: "17ff682da0e03e5d168fd6e16cf712a4"
+    });
+</script>
+</script>
+  
+
+  
+
+  
 
 
           </div>
@@ -298,8 +384,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
